@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartAttend+ | Departments</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="topbar">
+    <span>National University of Technology, Islamabad — <strong>School of Information Technology</strong></span>
+    <span id="datetime"></span>
+  </div>
+
+  <div class="navbar">
+    <div class="navbar-left">
+      <img src="nutech-logo.png" alt="NUTECH" />
+      <div class="navbar-title">
+        <h1>SmartAttend+</h1>
+        <p>RFID Attendance Management System</p>
+      </div>
+    </div>
+    <div class="navbar-right">
+      <div class="user-info">
+        <span id="username">Admin</span>
+        <small>Administrator</small>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="page-banner">
+    Departments
+    <span>Home / Departments</span>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar">
+      <div class="sidebar-section">Main Menu</div>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="students.html">Students</a>
+      <a href="attendance.html">Attendance</a>
+      <div class="sidebar-section">Management</div>
+      <a href="departments.html" class="active">Departments</a>
+      <a href="subjects.html">Subjects</a>
+    </div>
+
+    <div class="main">
+      <div class="breadcrumb">
+        <a href="dashboard.html">Home</a> / Departments
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="stat-card">
+          <h3>Total Departments</h3>
+          <div class="number">3</div>
+          <div class="label">Active Departments</div>
+        </div>
+        <div class="stat-card">
+          <h3>Total Programs</h3>
+          <div class="number">3</div>
+          <div class="label">Undergraduate</div>
+        </div>
+        <div class="stat-card">
+          <h3>Institution</h3>
+          <div class="number" style="font-size:18px;">NUTECH</div>
+          <div class="label">Islamabad</div>
+        </div>
+      </div>
+
+      <!-- DEPARTMENTS TABLE -->
+      <div class="card">
+        <div class="card-header">
+          <h2>All Departments</h2>
+          <span class="badge-red">3 Departments</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Department Name</th>
+              <th>Program</th>
+              <th>Duration</th>
+              <th>School</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><strong>Bachelor of Science in Information Technology</strong></td>
+              <td><span class="badge-red">BSIT</span></td>
+              <td>4 Years</td>
+              <td>School of Information Technology</td>
+              <td><span class="badge-present">Active</span></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><strong>Bachelor of Science in Computer Science</strong></td>
+              <td><span class="badge-red">BSCS</span></td>
+              <td>4 Years</td>
+              <td>School of Information Technology</td>
+              <td><span class="badge-present">Active</span></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><strong>Bachelor of Science in Software Engineering</strong></td>
+              <td><span class="badge-red">BSSE</span></td>
+              <td>4 Years</td>
+              <td>School of Information Technology</td>
+              <td><span class="badge-present">Active</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- DEPARTMENT DETAILS CARDS -->
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+
+        <div class="card" style="border-top: 3px solid #6D0000;">
+          <h3 style="color:#6D0000; font-size:16px; margin-bottom:10px;">BSIT</h3>
+          <p style="font-size:13px; color:#666; margin-bottom:15px;">Bachelor of Science in Information Technology</p>
+          <div style="font-size:12px; color:#888;">
+            <div style="margin-bottom:6px;">Duration: <strong>4 Years (8 Semesters)</strong></div>
+            <div style="margin-bottom:6px;">Credit Hours: <strong>136</strong></div>
+            <div style="margin-bottom:6px;">School: <strong>SIT</strong></div>
+            <div>Status: <span class="badge-present">Active</span></div>
+          </div>
+        </div>
+
+        <div class="card" style="border-top: 3px solid #6D0000;">
+          <h3 style="color:#6D0000; font-size:16px; margin-bottom:10px;">BSCS</h3>
+          <p style="font-size:13px; color:#666; margin-bottom:15px;">Bachelor of Science in Computer Science</p>
+          <div style="font-size:12px; color:#888;">
+            <div style="margin-bottom:6px;">Duration: <strong>4 Years (8 Semesters)</strong></div>
+            <div style="margin-bottom:6px;">Credit Hours: <strong>136</strong></div>
+            <div style="margin-bottom:6px;">School: <strong>SIT</strong></div>
+            <div>Status: <span class="badge-present">Active</span></div>
+          </div>
+        </div>
+
+        <div class="card" style="border-top: 3px solid #6D0000;">
+          <h3 style="color:#6D0000; font-size:16px; margin-bottom:10px;">BSSE</h3>
+          <p style="font-size:13px; color:#666; margin-bottom:15px;">Bachelor of Science in Software Engineering</p>
+          <div style="font-size:12px; color:#888;">
+            <div style="margin-bottom:6px;">Duration: <strong>4 Years (8 Semesters)</strong></div>
+            <div style="margin-bottom:6px;">Credit Hours: <strong>136</strong></div>
+            <div style="margin-bottom:6px;">School: <strong>SIT</strong></div>
+            <div>Status: <span class="badge-present">Active</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">
+      <h3>SmartAttend+ — RFID Attendance Management System</h3>
+      <p>National University of Technology (NUTECH), Islamabad | School of Information Technology</p>
+    </div>
+    <div class="footer-right">
+      Developed by BSIT Students — NUTECH<br>
+      Session 2025-2029 © All Rights Reserved
+    </div>
+  </div>
+
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      document.getElementById('datetime').textContent = now.toLocaleString('en-PK');
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+
+    document.getElementById('username').textContent =
+      localStorage.getItem('name') || 'Admin';
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = 'login.html';
+    }
+  </script>
+
+</body>
+</html>

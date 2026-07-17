@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartAttend+ | Subjects</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="topbar">
+    <span>National University of Technology, Islamabad — <strong>School of Information Technology</strong></span>
+    <span id="datetime"></span>
+  </div>
+
+  <div class="navbar">
+    <div class="navbar-left">
+      <img src="nutech-logo.png" alt="NUTECH" />
+      <div class="navbar-title">
+        <h1>SmartAttend+</h1>
+        <p>RFID Attendance Management System</p>
+      </div>
+    </div>
+    <div class="navbar-right">
+      <div class="user-info">
+        <span id="username">Admin</span>
+        <small>Administrator</small>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="page-banner">
+    Subjects
+    <span>Home / Subjects</span>
+  </div>
+
+  <div class="layout">
+    <div class="sidebar">
+      <div class="sidebar-section">Main Menu</div>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="students.html">Students</a>
+      <a href="attendance.html">Attendance</a>
+      <div class="sidebar-section">Management</div>
+      <a href="departments.html">Departments</a>
+      <a href="subjects.html" class="active">Subjects</a>
+    </div>
+
+    <div class="main">
+      <div class="breadcrumb">
+        <a href="dashboard.html">Home</a> / Subjects
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="stat-card">
+          <h3>Total Subjects</h3>
+          <div class="number">6</div>
+          <div class="label">Current Semester</div>
+        </div>
+        <div class="stat-card">
+          <h3>Semester</h3>
+          <div class="number">2nd</div>
+          <div class="label">Session 2025-2029</div>
+        </div>
+        <div class="stat-card">
+          <h3>Department</h3>
+          <div class="number" style="font-size:18px;">BSIT</div>
+          <div class="label">Information Technology</div>
+        </div>
+      </div>
+
+      <!-- SUBJECTS TABLE -->
+      <div class="card">
+        <div class="card-header">
+          <h2>All Subjects — 2nd Semester</h2>
+          <span class="badge-red">6 Subjects</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Subject Name</th>
+              <th>Code</th>
+              <th>Credit Hours</th>
+              <th>Department</th>
+              <th>Type</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><strong>Object Oriented Programming</strong></td>
+              <td><span class="badge-red">OOP</span></td>
+              <td>3+1</td>
+              <td>BSIT</td>
+              <td><span class="badge-blue">Core</span></td>
+              <td><span class="badge-present">Active</span></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><strong>Database Systems</strong></td>
+              <td><span class="badge-red">DB</span></td>
+              <td>3+1</td>
+              <td>BSIT</td>
+              <td><span class="badge-blue">Core</span></td>
+              <td><span class="badge-present">Active</span></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><strong>Digital Logic Design</strong></td>
+              <td><span class="badge-red">DLD</span></td>
+              <td>3+1</td>
+              <td>BSIT</td>
+              <td><span class="badge-blue">Core</span></td>
+              <td><span class="badge-present">Active</span></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><strong>Intro to Computing & Applied Technologies</strong></td>
+              <td><span class="badge-red">ICAT</span></td>
+              <td>3</td>
+              <td>BSIT</td>
+              <td><span class="badge-blue">Core</span></td>
+              <td><span class="badge-present">Active</span></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><strong>Multi Variable Calculus</strong></td>
+              <td><span class="badge-red">MVC</span></td>
+              <td>3</td>
+              <td>BSIT</td>
+              <td><span class="badge-blue">Core</span></td>
+              <td><span class="badge-present">Active</span></td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td><strong>Communication Skills</strong></td>
+              <td><span class="badge-red">CS</span></td>
+              <td>2</td>
+              <td>BSIT</td>
+              <td><span class="badge-blue">Core</span></td>
+              <td><span class="badge-present">Active</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">
+      <h3>SmartAttend+ — RFID Attendance Management System</h3>
+      <p>National University of Technology (NUTECH), Islamabad | School of Information Technology</p>
+    </div>
+    <div class="footer-right">
+      Developed by BSIT Students — NUTECH<br>
+      Session 2025-2029 © All Rights Reserved
+    </div>
+  </div>
+
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      document.getElementById('datetime').textContent = now.toLocaleString('en-PK');
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+
+    document.getElementById('username').textContent =
+      localStorage.getItem('name') || 'Admin';
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = 'login.html';
+    }
+  </script>
+
+</body>
+</html>
