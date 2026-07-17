@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartAttend+ | Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <span>National University of Technology, Islamabad — <strong>School of Information Technology</strong></span>
+    <span id="datetime"></span>
+  </div>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="navbar-left">
+      <img src="nutech-logo.png" alt="NUTECH" />
+      <div class="navbar-title">
+        <h1>SmartAttend+</h1>
+        <p>RFID Attendance Management System</p>
+      </div>
+    </div>
+    <div class="navbar-right">
+      <div class="user-info">
+        <span id="username">Admin</span>
+        <small>Administrator</small>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- PAGE BANNER -->
+  <div class="page-banner">
+    Dashboard
+    <span>Home / Dashboard</span>
+  </div>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-section">Main Menu</div>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="students.html">Students</a>
+      <a href="attendance.html">Attendance</a>
+      <div class="sidebar-section">Management</div>
+      <a href="departments.html">Departments</a>
+      <a href="subjects.html">Subjects</a>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+      <div class="breadcrumb">
+        <a href="dashboard.html">Home</a> / Dashboard
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Total Students</h3>
+          <div class="number" id="totalStudents">0</div>
+          <div class="label">Registered Students</div>
+        </div>
+        <div class="stat-card">
+          <h3>Present Today</h3>
+          <div class="number" id="presentToday">0</div>
+          <div class="label">Marked Present</div>
+        </div>
+        <div class="stat-card">
+          <h3>Total Records</h3>
+          <div class="number" id="totalRecords">0</div>
+          <div class="label">All Time Records</div>
+        </div>
+        <div class="stat-card">
+          <h3>Departments</h3>
+          <div class="number">3</div>
+          <div class="label">Active Departments</div>
+        </div>
+      </div>
+
+      <!-- INFO BANNER -->
+      <div class="card" style="border-left: 4px solid #6D0000; margin-bottom: 25px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h3 style="font-size:15px; font-weight:700; color:#2c2c2c;">School of Information Technology</h3>
+            <p style="font-size:13px; color:#888; margin-top:4px;">National University of Technology, Islamabad — Session 2025-2029</p>
+          </div>
+          <div style="display:flex; gap:30px;">
+            <div style="text-align:center;">
+              <div style="font-size:11px; color:#aaa; text-transform:uppercase;">Semester</div>
+              <div style="font-size:14px; font-weight:700; color:#2c2c2c;">2nd</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:11px; color:#aaa; text-transform:uppercase;">Session</div>
+              <div style="font-size:14px; font-weight:700; color:#2c2c2c;">2025-2029</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:11px; color:#aaa; text-transform:uppercase;">Status</div>
+              <div style="font-size:14px; font-weight:700; color:green;">Active</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RECENT ATTENDANCE -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Recent Attendance Records</h2>
+          <span class="badge-red" id="todayDate"></span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Student Name</th>
+              <th>Roll Number</th>
+              <th>Department</th>
+              <th>Class</th>
+              <th>Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="attendanceTable">
+            <tr><td colspan="7" class="empty-msg">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      <h3>SmartAttend+ — RFID Attendance Management System</h3>
+      <p>National University of Technology (NUTECH), Islamabad | School of Information Technology</p>
+    </div>
+    <div class="footer-right">
+      Developed by BSIT Students — NUTECH<br>
+      Session 2025-2029 © All Rights Reserved
+    </div>
+  </div>
+
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      document.getElementById('datetime').textContent = now.toLocaleString('en-PK');
+      document.getElementById('todayDate').textContent = now.toLocaleDateString('en-US');
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+
+    document.getElementById('username').textContent =
+      localStorage.getItem('name') || 'Admin';
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = 'login.html';
+    }
+
+    async function loadDashboard() {
+      try {
+        const studentsRes = await fetch('http://localhost:5000/api/students/all');
+        const students = await studentsRes.json();
+        document.getElementById('totalStudents').textContent = students.length;
+
+        const attRes = await fetch('http://localhost:5000/api/attendance/all');
+        const records = await attRes.json();
+        document.getElementById('totalRecords').textContent = records.length;
+
+        const today = new Date().toLocaleDateString('en-US');
+        const todayRecords = records.filter(r => r.date === today);
+        document.getElementById('presentToday').textContent = todayRecords.length;
+
+        const tbody = document.getElementById('attendanceTable');
+        if (records.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="7" class="empty-msg">No attendance records yet</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = records.slice(0, 10).map((r, i) => `
+          <tr>
+            <td>${i + 1}</td>
+            <td><strong>${r.studentName}</strong></td>
+            <td>${r.rollNumber}</td>
+            <td>BSIT</td>
+            <td>${r.className}</td>
+            <td>${r.time}</td>
+            <td><span class="badge-present">Present</span></td>
+          </tr>
+        `).join('');
+
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    loadDashboard();
+    setInterval(loadDashboard, 5000);
+  </script>
+
+</body>
+</html>
