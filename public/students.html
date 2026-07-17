@@ -307,7 +307,7 @@
 
     async function loadStudents() {
       try {
-        const res = await fetch('http://localhost:5000/api/students/all');
+        const res = await fetch('https://rfid-attendance-system-production-7f9b.up.railway.app/api/students/all');
         const students = await res.json();
         const tbody = document.getElementById('studentsTable');
 
@@ -344,7 +344,7 @@
       }
 
       try {
-        const res = await fetch('http://localhost:5000/api/students/add', {
+        const res = await fetch('https://rfid-attendance-system-production-7f9b.up.railway.app/api/students/add', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name, rollNumber, rfidUID, className })
@@ -374,7 +374,7 @@
       if (!confirm('Are you sure you want to delete this student?')) return;
 
       try {
-        await fetch(`http://localhost:5000/api/students/delete/${id}`, {
+        await fetch(`https://rfid-attendance-system-production-7f9b.up.railway.app/api/students/delete/${id}`, {
           method: 'DELETE'
         });
         loadStudents();

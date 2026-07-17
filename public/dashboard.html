@@ -163,11 +163,11 @@
 
     async function loadDashboard() {
       try {
-        const studentsRes = await fetch('http://localhost:5000/api/students/all');
+        const studentsRes = await fetch('https://rfid-attendance-system-production-7f9b.up.railway.app/api/students/all');
         const students = await studentsRes.json();
         document.getElementById('totalStudents').textContent = students.length;
 
-        const attRes = await fetch('http://localhost:5000/api/attendance/all');
+        const attRes = await fetch('https://rfid-attendance-system-production-7f9b.up.railway.app/api/attendance/all');
         const records = await attRes.json();
         document.getElementById('totalRecords').textContent = records.length;
 

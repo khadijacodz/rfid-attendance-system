@@ -357,7 +357,7 @@
 
     async function loadAttendance() {
       try {
-        const res = await fetch('http://localhost:5000/api/attendance/all');
+        const res = await fetch('https://rfid-attendance-system-production-7f9b.up.railway.app/api/attendance/all');
         allRecords = await res.json();
         renderTable(allRecords);
       } catch (err) {
